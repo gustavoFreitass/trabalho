@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Unir arquivos PDF</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"
+        defer
+    ></script>
+
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <main class="container">
+        <header class="header">
+            <div>
+                <span class="badge">Processamento local</span>
+
+                <h1>Unir arquivos PDF</h1>
+
+                <p>
+                    Adicione os arquivos, organize a ordem e gere um único PDF.
+                    Nenhum documento é enviado para a internet.
+                </p>
+            </div>
+        </header>
+
+        <section
+            id="dropZone"
+            class="drop-zone"
+            tabindex="0"
+            role="button"
+            aria-label="Adicionar arquivos PDF"
+        >
+            <div class="drop-icon" aria-hidden="true">
+                <svg
+                    width="42"
+                    height="42"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="12" y1="18" x2="12" y2="12"/>
+                    <polyline points="9 15 12 12 15 15"/>
+                </svg>
+            </div>
+
+            <h2>Arraste seus PDFs para cá</h2>
+
+            <p>ou clique para selecionar os arquivos</p>
+
+            <button id="selectButton" class="button secondary" type="button">
+                Selecionar PDFs
+            </button>
+
+            <input
+                id="fileInput"
+                type="file"
+                accept="application/pdf,.pdf"
+                multiple
+                hidden
+            >
+        </section>
+
+        <section id="workspace" class="workspace hidden">
+            <div class="workspace-header">
+                <div>
+                    <h2>Arquivos selecionados</h2>
+
+                    <p id="fileSummary">
+                        Nenhum arquivo selecionado
+                    </p>
+                </div>
+
+                <button id="clearButton" class="text-button" type="button">
+                    Limpar lista
+                </button>
+            </div>
+
+            <div id="fileList" class="file-list"></div>
+
+            <div class="output-settings">
+                <label for="outputName">Nome do arquivo final</label>
+
+                <div class="filename-field">
+                    <input
+                        id="outputName"
+                        type="text"
+                        value="PDF_Unificado"
+                        maxlength="100"
+                        autocomplete="off"
+                    >
+
+                    <span>.pdf</span>
+                </div>
+            </div>
+
+            <div id="message" class="message hidden" role="status"></div>
+
+            <div id="progressArea" class="progress-area hidden">
+                <div class="progress-information">
+                    <span id="progressText">Preparando arquivos...</span>
+                    <span id="progressPercentage">0%</span>
+                </div>
+
+                <div class="progress-track">
+                    <div id="progressBar" class="progress-bar"></div>
+                </div>
+            </div>
+
+            <button id="mergeButton" class="button primary merge-button" type="button">
+                <span id="mergeButtonText">Unir PDFs</span>
+            </button>
+        </section>
+
+        <footer class="footer">
+            <p>
+                O processamento ocorre somente neste computador.
+                Fechar ou atualizar a página remove os arquivos selecionados.
+            </p>
+        </footer>
+    </main>
+</body>
+</html>
