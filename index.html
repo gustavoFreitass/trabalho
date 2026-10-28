@@ -2,138 +2,394 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Unir arquivos PDF</title>
-
-    <link rel="stylesheet" href="style.css">
-
-    <script
-        src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"
-        defer
-    ></script>
-
-    <script src="script.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0b0d10">
+    <meta name="description" content="Una arquivos, converta documentos e crie PDFs pesquisáveis em um só espaço de trabalho.">
+    <title>PDF Workstation — Documentos sem atrito</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
 </head>
-
 <body>
-    <main class="container">
-        <header class="header">
-            <div>
-                <span class="badge">Processamento local</span>
+    <div class="ambient ambient--one" aria-hidden="true"></div>
+    <div class="ambient ambient--two" aria-hidden="true"></div>
 
-                <h1>Unir arquivos PDF</h1>
+    <div class="app-shell">
+        <header class="app-header">
+            <a href="#top" class="brand" aria-label="PDF Workstation, início">
+                <span class="brand-icon" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" fill="none">
+                        <path d="M9 3.75h9l6 6V27a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 8 27V5.25A1.5 1.5 0 0 1 9.5 3.75Z" stroke="currentColor" stroke-width="1.8"/>
+                        <path d="M18 4v6h6M12 16h8M12 20h8M12 24h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    </svg>
+                </span>
+                <span class="brand-copy">
+                    <strong>PDF <span>Workstation</span></strong>
+                    <small>DOCUMENTOS, SEM ATRITO</small>
+                </span>
+            </a>
 
-                <p>
-                    Adicione os arquivos, organize a ordem e gere um único PDF.
-                    Nenhum documento é enviado para a internet.
-                </p>
+            <div class="header-right">
+                <span class="header-badge"><span class="status-dot"></span> 3 ferramentas disponíveis</span>
+                <span class="header-divider"></span>
+                <span class="header-index">WORKSPACE <b>01</b></span>
             </div>
         </header>
 
-        <section
-            id="dropZone"
-            class="drop-zone"
-            tabindex="0"
-            role="button"
-            aria-label="Adicionar arquivos PDF"
-        >
-            <div class="drop-icon" aria-hidden="true">
-                <svg
-                    width="42"
-                    height="42"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                >
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                    <polyline points="14 2 14 8 20 8"/>
-                    <line x1="12" y1="18" x2="12" y2="12"/>
-                    <polyline points="9 15 12 12 15 15"/>
-                </svg>
-            </div>
-
-            <h2>Arraste seus PDFs para cá</h2>
-
-            <p>ou clique para selecionar os arquivos</p>
-
-            <button id="selectButton" class="button secondary" type="button">
-                Selecionar PDFs
-            </button>
-
-            <input
-                id="fileInput"
-                type="file"
-                accept="application/pdf,.pdf"
-                multiple
-                hidden
-            >
-        </section>
-
-        <section id="workspace" class="workspace hidden">
-            <div class="workspace-header">
-                <div>
-                    <h2>Arquivos selecionados</h2>
-
-                    <p id="fileSummary">
-                        Nenhum arquivo selecionado
-                    </p>
+        <main id="top">
+            <section class="hero" aria-labelledby="hero-title">
+                <div class="hero-main">
+                    <p class="eyebrow"><span class="eyebrow-mark"></span> UM ESPAÇO PARA RESOLVER</p>
+                    <h1 id="hero-title">Seus documentos.<br><span>Resolvidos.</span></h1>
+                    <p class="hero-copy">Escolha o que precisa fazer. Organize seus arquivos, converta para PDF ou transforme digitalizações em documentos pesquisáveis.</p>
+                    <div class="hero-meta">
+                        <span class="hero-meta-mark">↳</span>
+                        Direto ao ponto. Sem complicar o processo.
+                    </div>
                 </div>
 
-                <button id="clearButton" class="text-button" type="button">
-                    Limpar lista
-                </button>
-            </div>
+                <aside class="workflow-card" aria-label="Etapas do trabalho">
+                    <div class="workflow-card-head">
+                        <span>SEU FLUXO DE TRABALHO</span>
+                        <span class="workflow-count">01 — 03</span>
+                    </div>
 
-            <div id="fileList" class="file-list"></div>
+                    <div class="workflow-steps">
+                        <div class="workflow-step">
+                            <span class="workflow-step-number">01</span>
+                            <span class="workflow-step-icon workflow-step-icon--input">↓</span>
+                            <span><strong>Adicionar</strong><small>Escolha seus arquivos</small></span>
+                        </div>
+                        <div class="workflow-connector"></div>
+                        <div class="workflow-step">
+                            <span class="workflow-step-number">02</span>
+                            <span class="workflow-step-icon workflow-step-icon--process">✳</span>
+                            <span><strong>Processar</strong><small>A ferramenta faz o trabalho</small></span>
+                        </div>
+                        <div class="workflow-connector"></div>
+                        <div class="workflow-step">
+                            <span class="workflow-step-number">03</span>
+                            <span class="workflow-step-icon workflow-step-icon--output">↗</span>
+                            <span><strong>Baixar</strong><small>Receba seu PDF pronto</small></span>
+                        </div>
+                    </div>
 
-            <div class="output-settings">
-                <label for="outputName">Nome do arquivo final</label>
+                    <div class="workflow-card-foot">
+                        <span class="live-dot"></span>
+                        Um fluxo claro, do início ao fim.
+                    </div>
+                </aside>
+            </section>
 
-                <div class="filename-field">
-                    <input
-                        id="outputName"
-                        type="text"
-                        value="PDF_Unificado"
-                        maxlength="100"
-                        autocomplete="off"
-                    >
-
-                    <span>.pdf</span>
+            <section class="workspace-section" aria-labelledby="workspace-title">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow section-eyebrow">COMECE POR AQUI</p>
+                        <h2 id="workspace-title">O que você precisa fazer?</h2>
+                        <p class="section-copy">Selecione uma ferramenta para abrir seu espaço de trabalho.</p>
+                    </div>
+                    <span class="tools-count"><strong>03</strong><span>OPÇÕES</span></span>
                 </div>
-            </div>
 
-            <div id="message" class="message hidden" role="status"></div>
+                <div class="tool-choices" id="toolChoices" aria-label="Escolha uma ferramenta">
+                    <button class="tool-choice tool-choice--merge" id="tab-merge" type="button" data-tab="merge" aria-controls="panel-merge" aria-pressed="false">
+                        <span class="choice-top">
+                            <span class="choice-index">01 / ORGANIZAR</span>
+                            <span class="choice-arrow" aria-hidden="true">↗</span>
+                        </span>
+                        <span class="tool-art tool-art--merge" aria-hidden="true">
+                            <i class="paper paper--one"></i>
+                            <i class="paper paper--two"></i>
+                            <i class="paper paper--three"><b></b><b></b><b></b></i>
+                            <i class="merge-symbol">+</i>
+                        </span>
+                        <span class="choice-title">Unir arquivos</span>
+                        <span class="choice-description">Combine PDFs, documentos e imagens em um único arquivo.</span>
+                        <span class="choice-bottom">
+                            <span>Começar a unir</span>
+                            <span class="choice-bottom-arrow" aria-hidden="true">→</span>
+                        </span>
+                    </button>
 
-            <div id="progressArea" class="progress-area hidden">
-                <div class="progress-information">
-                    <span id="progressText">Preparando arquivos...</span>
-                    <span id="progressPercentage">0%</span>
+                    <button class="tool-choice tool-choice--convert" id="tab-convert" type="button" data-tab="convert" aria-controls="panel-convert" aria-pressed="false">
+                        <span class="choice-top">
+                            <span class="choice-index">02 / CONVERTER</span>
+                            <span class="choice-arrow" aria-hidden="true">↗</span>
+                        </span>
+                        <span class="tool-art tool-art--convert" aria-hidden="true">
+                            <i class="convert-file"><b></b><b></b><b></b></i>
+                            <i class="convert-arrow">↗</i>
+                            <i class="convert-pdf">PDF</i>
+                        </span>
+                        <span class="choice-title">Converter para PDF</span>
+                        <span class="choice-description">Transforme arquivos Word, Excel, PowerPoint, textos e imagens.</span>
+                        <span class="choice-bottom">
+                            <span>Começar a converter</span>
+                            <span class="choice-bottom-arrow" aria-hidden="true">→</span>
+                        </span>
+                    </button>
+
+                    <button class="tool-choice tool-choice--ocr" id="tab-ocr" type="button" data-tab="ocr" aria-controls="panel-ocr" aria-pressed="false">
+                        <span class="choice-top">
+                            <span class="choice-index">03 / RECONHECER</span>
+                            <span class="choice-arrow" aria-hidden="true">↗</span>
+                        </span>
+                        <span class="tool-art tool-art--ocr" aria-hidden="true">
+                            <i class="ocr-frame"><b></b><b></b><b></b><b></b></i>
+                            <i class="ocr-scan"></i>
+                            <i class="ocr-spark">✳</i>
+                        </span>
+                        <span class="choice-title">OCR pesquisável</span>
+                        <span class="choice-description">Reconheça o texto de PDFs escaneados e imagens.</span>
+                        <span class="choice-bottom">
+                            <span>Começar o OCR</span>
+                            <span class="choice-bottom-arrow" aria-hidden="true">→</span>
+                        </span>
+                    </button>
                 </div>
 
-                <div class="progress-track">
-                    <div id="progressBar" class="progress-bar"></div>
-                </div>
-            </div>
+                <p class="selection-hint" id="selectionHint">
+                    <span class="hint-key">↳</span>
+                    Clique em uma opção para abrir as ferramentas.
+                </p>
 
-            <button id="mergeButton" class="button primary merge-button" type="button">
-                <span id="mergeButtonText">Unir PDFs</span>
-            </button>
-        </section>
+                <section id="panel-merge" class="tool-panel tool-panel--merge hidden" data-panel="merge" role="region" aria-labelledby="tab-merge" hidden>
+                    <div class="panel-topbar">
+                        <span class="panel-kicker">FERRAMENTA 01 <span>/ ORGANIZAÇÃO</span></span>
+                        <button class="back-button" type="button" data-return-tools><span aria-hidden="true">←</span> Trocar ferramenta</button>
+                    </div>
 
-        <footer class="footer">
-            <p>
-                O processamento ocorre somente neste computador.
-                Fechar ou atualizar a página remove os arquivos selecionados.
-            </p>
+                    <div class="panel-heading">
+                        <div class="panel-heading-main">
+                            <h2>Tudo junto. Um único PDF.</h2>
+                            <p>Adicione seus arquivos, ajuste a ordem e gere um documento final.</p>
+                        </div>
+                        <div class="panel-motion panel-motion--merge" aria-hidden="true">
+                            <span class="motion-sheet motion-sheet--back"></span>
+                            <span class="motion-sheet motion-sheet--front"><i></i><i></i><i></i></span>
+                            <span class="motion-plus">+</span>
+                        </div>
+                    </div>
+
+                    <div class="drop-zone" id="mergeDropZone" tabindex="0" role="button" aria-label="Selecionar arquivos para unir">
+                        <div class="upload-icon" aria-hidden="true">
+                            <svg viewBox="0 0 32 32" fill="none">
+                                <path d="M16 21V7m0 0-5 5m5-5 5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M8 20v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="upload-copy">
+                            <h3>Solte seus arquivos aqui</h3>
+                            <p>ou escolha os documentos no seu computador</p>
+                        </div>
+                        <button type="button" class="button secondary" id="mergeSelectButton"><span class="button-plus" aria-hidden="true">+</span> Selecionar arquivos</button>
+                        <input id="mergeInput" type="file" multiple hidden accept=".pdf,.doc,.docx,.odt,.rtf,.xls,.xlsx,.ods,.ppt,.pptx,.odp,.csv,.txt,.md,.json,.xml,.html,.htm,.png,.jpg,.jpeg,.webp,.bmp,.gif">
+                        <div class="format-list">
+                            <span>PDF</span><span>DOCX</span><span>XLSX</span><span>PPTX</span><span>TXT</span><span>PNG / JPG</span>
+                        </div>
+                    </div>
+
+                    <section class="workspace hidden" id="mergeWorkspace">
+                        <div class="workspace-header">
+                            <div>
+                                <h3>Arquivos selecionados</h3>
+                                <p id="mergeSummary">Nenhum arquivo selecionado</p>
+                            </div>
+                            <button type="button" class="text-button" id="mergeClearButton">Limpar lista <span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="list-header" aria-hidden="true">
+                            <span>ORDEM</span><span>ARQUIVO</span><span>FORMATO</span><span>AÇÕES</span>
+                        </div>
+                        <div id="mergeFileList" class="file-list"></div>
+                        <div class="settings">
+                            <label for="mergeOutputName">Nome do PDF final</label>
+                            <div class="filename-field">
+                                <input id="mergeOutputName" type="text" value="PDF_Unificado" maxlength="100" autocomplete="off">
+                                <span>.pdf</span>
+                            </div>
+                            <label class="check-option">
+                                <input id="mergeOcr" type="checkbox">
+                                <span class="check-box" aria-hidden="true"></span>
+                                <span>
+                                    <strong>Aplicar OCR em páginas digitalizadas</strong>
+                                    <small>Reconhece o texto de PDFs escaneados e imagens antes de unir.</small>
+                                </span>
+                            </label>
+                            <p class="privacy-note"><span class="privacy-dot"></span> Arquivos Office são enviados ao backend para conversão. Os arquivos temporários são removidos após o processamento.</p>
+                        </div>
+                    </section>
+
+                    <div id="mergeStatus" class="status-message hidden" role="status" aria-live="polite"></div>
+                    <div id="mergeProgress" class="progress-area hidden" aria-live="polite">
+                        <div class="progress-info">
+                            <span id="mergeProgressText">Preparando...</span>
+                            <span id="mergeProgressPercent">0%</span>
+                        </div>
+                        <div class="progress-track"><div id="mergeProgressBar" class="progress-bar"></div></div>
+                    </div>
+                    <div class="panel-footer">
+                        <span class="footer-caption">PDF WORKSTATION <span>·</span> UNIR DOCUMENTOS</span>
+                        <button id="mergeButton" class="button primary" disabled>Converter e unir arquivos <span aria-hidden="true">↗</span></button>
+                    </div>
+                </section>
+
+                <section id="panel-convert" class="tool-panel tool-panel--convert hidden" data-panel="convert" role="region" aria-labelledby="tab-convert" hidden>
+                    <div class="panel-topbar">
+                        <span class="panel-kicker">FERRAMENTA 02 <span>/ CONVERSÃO</span></span>
+                        <button class="back-button" type="button" data-return-tools><span aria-hidden="true">←</span> Trocar ferramenta</button>
+                    </div>
+
+                    <div class="panel-heading">
+                        <div class="panel-heading-main">
+                            <h2>Do seu formato para PDF.</h2>
+                            <p>Transforme documentos, planilhas, apresentações, textos e imagens em PDF.</p>
+                        </div>
+                        <div class="panel-motion panel-motion--convert" aria-hidden="true">
+                            <span class="motion-convert-file"><i></i><i></i><i></i></span>
+                            <span class="motion-convert-arrow">↻</span>
+                        </div>
+                    </div>
+
+                    <div class="drop-zone compact" id="convertDropZone" tabindex="0" role="button" aria-label="Selecionar arquivo para converter">
+                        <div class="upload-icon" aria-hidden="true">
+                            <svg viewBox="0 0 32 32" fill="none">
+                                <path d="M10 4h9l6 6v17H10a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.7"/>
+                                <path d="M19 4v7h6M12 17h10M12 21h10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="upload-copy">
+                            <h3>Solte um arquivo para converter</h3>
+                            <p>Um documento por vez. O PDF será baixado quando estiver pronto.</p>
+                        </div>
+                        <button type="button" class="button secondary" id="convertSelectButton"><span class="button-plus" aria-hidden="true">+</span> Escolher arquivo</button>
+                        <input id="convertInput" type="file" hidden accept=".pdf,.doc,.docx,.odt,.rtf,.xls,.xlsx,.ods,.ppt,.pptx,.odp,.csv,.txt,.md,.json,.xml,.html,.htm,.png,.jpg,.jpeg,.webp,.bmp,.gif">
+                        <div class="format-list">
+                            <span>DOCX</span><span>XLSX</span><span>PPTX</span><span>ODT</span><span>TXT</span><span>IMAGENS</span>
+                        </div>
+                    </div>
+
+                    <section id="convertSelection" class="selected-file hidden">
+                        <div class="selected-file-icon" aria-hidden="true">PDF</div>
+                        <div class="selected-file-info">
+                            <strong id="convertFileName"></strong>
+                            <small id="convertFileDetails"></small>
+                        </div>
+                        <button class="icon-button remove" id="convertRemoveButton" type="button" aria-label="Remover arquivo">×</button>
+                    </section>
+
+                    <section class="settings standalone-settings">
+                        <label for="convertOutputName">Nome do PDF de saída</label>
+                        <div class="filename-field">
+                            <input id="convertOutputName" type="text" value="Documento_Convertido" maxlength="100" autocomplete="off">
+                            <span>.pdf</span>
+                        </div>
+                        <p class="privacy-note">Documentos Office são convertidos pelo LibreOffice no backend da aplicação.</p>
+                    </section>
+
+                    <div id="convertStatus" class="status-message hidden" role="status" aria-live="polite"></div>
+                    <div id="convertProgress" class="progress-area hidden" aria-live="polite">
+                        <div class="progress-info">
+                            <span id="convertProgressText">Preparando...</span>
+                            <span id="convertProgressPercent">0%</span>
+                        </div>
+                        <div class="progress-track"><div id="convertProgressBar" class="progress-bar"></div></div>
+                    </div>
+                    <div class="panel-footer">
+                        <span class="footer-caption">PDF WORKSTATION <span>·</span> CONVERSÃO</span>
+                        <button id="convertButton" class="button primary" disabled>Converter para PDF <span aria-hidden="true">↗</span></button>
+                    </div>
+                </section>
+
+                <section id="panel-ocr" class="tool-panel tool-panel--ocr hidden" data-panel="ocr" role="region" aria-labelledby="tab-ocr" hidden>
+                    <div class="panel-topbar">
+                        <span class="panel-kicker">FERRAMENTA 03 <span>/ RECONHECIMENTO</span></span>
+                        <button class="back-button" type="button" data-return-tools><span aria-hidden="true">←</span> Trocar ferramenta</button>
+                    </div>
+
+                    <div class="panel-heading">
+                        <div class="panel-heading-main">
+                            <h2>Torne o texto pesquisável.</h2>
+                            <p>Reconheça o texto de documentos digitalizados sem perder a imagem original.</p>
+                        </div>
+                        <div class="panel-motion panel-motion--ocr" aria-hidden="true">
+                            <span class="motion-ocr-frame"><i></i><i></i><i></i><b></b></span>
+                        </div>
+                    </div>
+
+                    <div class="ocr-info">
+                        <span class="ocr-icon" aria-hidden="true">Aa</span>
+                        <div>
+                            <strong>OCR — reconhecimento óptico de caracteres</strong>
+                            <p>A imagem original é preservada e o texto reconhecido é adicionado em uma camada invisível.</p>
+                        </div>
+                        <span class="language-chip">PT + EN</span>
+                    </div>
+
+                    <div class="drop-zone compact" id="ocrDropZone" tabindex="0" role="button" aria-label="Selecionar PDFs e imagens para OCR">
+                        <div class="upload-icon" aria-hidden="true">
+                            <svg viewBox="0 0 32 32" fill="none">
+                                <path d="M7 4h18v24H7zM11 11h10M11 16h10M11 21h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M4 9V6a2 2 0 0 1 2-2M28 9V6a2 2 0 0 0-2-2M4 23v3a2 2 0 0 0 2 2M28 23v3a2 2 0 0 1-2 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="upload-copy">
+                            <h3>Adicione PDFs digitalizados ou imagens</h3>
+                            <p>Selecione vários arquivos para gerar um único PDF pesquisável.</p>
+                        </div>
+                        <button type="button" class="button secondary" id="ocrSelectButton"><span class="button-plus" aria-hidden="true">+</span> Selecionar arquivos</button>
+                        <input id="ocrInput" type="file" multiple hidden accept=".pdf,.png,.jpg,.jpeg,.webp,.bmp,.gif">
+                        <div class="format-list">
+                            <span>PDF</span><span>PNG / JPG</span><span>WEBP</span><span>BMP / GIF</span>
+                        </div>
+                    </div>
+
+                    <section id="ocrWorkspace" class="workspace hidden">
+                        <div class="workspace-header">
+                            <div>
+                                <h3>Arquivos para reconhecimento</h3>
+                                <p id="ocrSummary">Nenhum arquivo selecionado</p>
+                            </div>
+                            <button type="button" class="text-button" id="ocrClearButton">Limpar lista <span aria-hidden="true">×</span></button>
+                        </div>
+                        <div id="ocrFileList" class="file-list"></div>
+                        <div class="settings">
+                            <label for="ocrOutputName">Nome do PDF pesquisável</label>
+                            <div class="filename-field">
+                                <input id="ocrOutputName" type="text" value="PDF_Pesquisavel" maxlength="100" autocomplete="off">
+                                <span>.pdf</span>
+                            </div>
+                            <p class="privacy-note">A precisão depende da resolução, orientação e qualidade da digitalização.</p>
+                        </div>
+                    </section>
+
+                    <div id="ocrStatus" class="status-message hidden" role="status" aria-live="polite"></div>
+                    <div id="ocrProgress" class="progress-area hidden" aria-live="polite">
+                        <div class="progress-info">
+                            <span id="ocrProgressText">Preparando...</span>
+                            <span id="ocrProgressPercent">0%</span>
+                        </div>
+                        <div class="progress-track"><div id="ocrProgressBar" class="progress-bar"></div></div>
+                    </div>
+                    <div class="panel-footer">
+                        <span class="footer-caption">PDF WORKSTATION <span>·</span> OCR PESQUISÁVEL</span>
+                        <button id="ocrButton" class="button primary" disabled>Reconhecer texto <span aria-hidden="true">↗</span></button>
+                    </div>
+                </section>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <span class="footer-brand"><span class="footer-mark">P</span> PDF Workstation</span>
+            <span>Um espaço de trabalho, três soluções.</span>
+            <a href="#top" class="back-to-top">Voltar ao topo ↑</a>
         </footer>
-    </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js"></script>
+    <script type="module" src="/js/main.js"></script>
 </body>
 </html>
